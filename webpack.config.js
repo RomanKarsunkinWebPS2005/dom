@@ -2,26 +2,21 @@ import path from 'path';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 
 export default {
-  mode: 'development',
+  mode: 'production',
   entry: './src/index.js',
   output: {
-    filename: 'main.js',
     path: path.resolve('dist'),
-    clean: true,
+    filename: 'bundle.js',
+    publicPath: '/dom/', // <-- это важно для gh-pages!
   },
   module: {
     rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: 'babel-loader',
-      },
       {
         test: /\.css$/i,
         use: ['style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpg|gif)$/i,
+        test: /\.(png|jpg|gif|svg)$/i,
         type: 'asset/resource',
       },
     ],
@@ -31,8 +26,4 @@ export default {
       template: './src/index.html',
     }),
   ],
-  devServer: {
-    static: './dist',
-    hot: true,
-  },
 };
