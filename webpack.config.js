@@ -7,7 +7,7 @@ export default {
   output: {
     path: path.resolve('dist'),
     filename: 'bundle.js',
-    publicPath: '/dom/', // <-- это важно для gh-pages!
+    publicPath: '/dom/', 
   },
   module: {
     rules: [
